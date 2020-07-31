@@ -9,6 +9,8 @@ import ApplicantsCreate from '../views/applicants/ApplicantsCreate.vue'
 
 Vue.use(VueRouter)
 
+const isLoggedIn = false;
+
 const routes = [
   {
     path: '/',
@@ -18,27 +20,67 @@ const routes = [
   {
     path: '/applicants',
     name: 'Applicants-All',
-    component: ApplicantsAll
+    component: ApplicantsAll,
+    beforeEnter: (toolbar, from, next) => {
+      if (isLoggedIn) {
+        next();
+      }
+      else {
+        next('/login');
+      }
+    }
   },
   {
     path: '/applicants/create',
     name: 'Applicants-Create',
-    component: ApplicantsCreate
+    component: ApplicantsCreate,
+    beforeEnter: (toolbar, from, next) => {
+      if (isLoggedIn) {
+        next();
+      }
+      else {
+        next('/login');
+      }
+    }
   },
   {
     path: '/applicants/:id',
     name: 'Applicants-Edit',
-    component: ApplicantsEdit
+    component: ApplicantsEdit,
+    beforeEnter: (toolbar, from, next) => {
+      if (isLoggedIn) {
+        next();
+      }
+      else {
+        next('/login');
+      }
+    }
   },
   {
     path: '/register',
     name: 'Register',
-    component: Register
+    component: Register,
+    beforeEnter: (toolbar, from, next) => {
+      if (!isLoggedIn) {
+        next();
+      }
+      else {
+        next('/');
+      }
+    }
   },
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
+    beforeEnter: (toolbar, from, next) => {
+      if (!isLoggedIn) {
+        next();
+      }
+      else {
+        next('/');
+      }
+    }
   },
   {
     path: '*',
