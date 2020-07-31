@@ -5,7 +5,7 @@ module.exports = function index(req, res) {
     if (!validation.isValid) {
         return res.status(400).json({ message: validation.message });
     }
-   
+
     return res.status(204).json();
 }
 
