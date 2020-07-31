@@ -6,9 +6,7 @@
       and Node technologies
     </p>
     <hr class="my-4" />
-    <p>
-     Click below to see all home applicants
-    </p>
-    <a class="btn btn-success btn-lg" href="#" role="button">View Applicants</a>
+    <p>Click below to see all home applicants</p>
+    <router-link class="btn btn-success btn-lg" to="/applicants" exact>View Applicants</router-link>
   </div>
 </template>
