@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Login Route</h1>
-    <form  class="custom-form" v-on:submit="onSubmit">
+    <form class="custom-form" v-on:submit="onSubmit">
       <div class="form-group">
         <label for="username">Username</label>
         <input type="text" class="form-control" id="username" placeholder="Username" />
@@ -19,15 +19,15 @@
 
 
 <script>
-import * as auth from '../../services/auth'
+import * as auth from "../../services/auth";
 export default {
-  name:'login',
-  methods:{
-    onSubmit:  function(event){
+  name: "login",
+  methods: {
+    onSubmit: function (event) {
       event.preventDefault();
       auth.login();
-      this.$router.push({name:'Home'})
-    }
-  }
-}
+      this.$router.push({ name: "Home" });
+    },
+  },
+};
 </script>
