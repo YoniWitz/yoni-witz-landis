@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const StringUtil = require('../utilities/string-util');
+const bcrypt = require('bcrypt-nodejs');
+
 const userSchema = new mongoose.Schema({
     username: String,
     first: String,
@@ -15,10 +17,12 @@ userSchema.virtual('fullName').get(function () {
     return first + ' ' + last;
 });
 
-userSchema.pre('save', function(next){
+userSchema.pre('save', function (next) {
     this.username = this.username.toLowerCase();
     this.first = this.first.toLowerCase();
     this.last = this.last.toLowerCase();
+    const unsafePassword = this.password;
+    this.password = bcrypt.hashSync(unsafePassword);
     next();
 });
 
