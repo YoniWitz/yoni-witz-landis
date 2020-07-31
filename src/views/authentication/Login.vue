@@ -23,7 +23,7 @@ import * as auth from '../../services/auth'
 export default {
   name:'login',
   methods:{
-    onSubmit: function(event){
+    onSubmit:  function(event){
       event.preventDefault();
       auth.login();
       this.$router.push({name:'Home'})
