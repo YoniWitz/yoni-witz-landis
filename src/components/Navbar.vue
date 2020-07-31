@@ -35,7 +35,7 @@
             <router-link to="/logout" class="nav-link" exact>Logout</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/" class="nav-link" exact>Yoni</router-link>
+            <router-link to="/" class="nav-link" exact>{{this.$store.state.username ? this.$store.state.username: 'User'}}</router-link>
           </li>
         </ul>
       </div>

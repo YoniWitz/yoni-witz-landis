@@ -21,7 +21,7 @@ const routes = [
     path: '/applicants',
     name: 'Applicants-All',
     component: ApplicantsAll,
-    beforeEnter: (toolbar, from, next) => {
+    beforeEnter: (to, from, next) => {
       if (isLoggedIn) {
         next();
       }
@@ -34,7 +34,7 @@ const routes = [
     path: '/applicants/create',
     name: 'Applicants-Create',
     component: ApplicantsCreate,
-    beforeEnter: (toolbar, from, next) => {
+    beforeEnter: (to, from, next) => {
       if (isLoggedIn) {
         next();
       }
@@ -47,7 +47,7 @@ const routes = [
     path: '/applicants/:id',
     name: 'Applicants-Edit',
     component: ApplicantsEdit,
-    beforeEnter: (toolbar, from, next) => {
+    beforeEnter: (to, from, next) => {
       if (isLoggedIn) {
         next();
       }
@@ -60,7 +60,7 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register,
-    beforeEnter: (toolbar, from, next) => {
+    beforeEnter: (to, from, next) => {
       if (!isLoggedIn) {
         next();
       }
@@ -73,7 +73,7 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login,
-    beforeEnter: (toolbar, from, next) => {
+    beforeEnter: (to, from, next) => {
       if (!isLoggedIn) {
         next();
       }
