@@ -1,9 +1,11 @@
 <template>
   <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top custom-bg-dark">
-      <a class="navbar-brand" href="#">
-        <img style="max-height:25px;" src="../assets/logo.png" /> Yoni Witz Landis
-      </a>
+      <router-link to="/" class="navbar-brand">
+        <img style="max-height:25px;" src="../assets/logo.png" /> Yoni Witz
+        Landis
+      </router-link>
+
       <button
         class="navbar-toggler"
         type="button"
@@ -17,28 +19,25 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#"
-              >Home </a
-            >
+          <li class="nav-item">
+            <router-link to="/" class="nav-link" exact>Home</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Tasks</a>
+            <router-link to="/applicants" class="nav-link" exact>Applicants</router-link>
           </li>
-           <li class="nav-item">
-            <a class="nav-link" href="#">Register</a>
+          <li class="nav-item">
+            <router-link to="/register" class="nav-link" exact>Register</router-link>
           </li>
-           <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
+          <li class="nav-item">
+            <router-link to="/login" class="nav-link" exact>Login</router-link>
           </li>
-           <li class="nav-item">
-            <a class="nav-link" href="#">Logout</a>
+          <li class="nav-item">
+            <router-link to="/logout" class="nav-link" exact>Logout</router-link>
           </li>
-           <li class="nav-item">
-            <a class="nav-link" href="#">Yoni</a>
+          <li class="nav-item">
+            <router-link to="/" class="nav-link" exact>Yoni</router-link>
           </li>
         </ul>
-       
       </div>
     </nav>
   </header>
