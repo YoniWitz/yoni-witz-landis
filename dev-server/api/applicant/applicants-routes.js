@@ -1,23 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const controller = require('./applicants-controller');
 
-router.post('/applicant', (req, res) => {
-    res.send('post.applicant - create a task');
-});
+router.post('/applicant', controller.create);
 
-router.get('/applicant', (req, res) => {
-    res.send('get.applicant - get all applicants');
-});
+router.get('/applicant', controller.index);
 
-router.get('/applicant/:id', (req, res) => {
-    res.send('get.applicant/:id - get applicant by id');
-});
+router.get('/applicant/:id', controller.get);
 
-router.put('/applicant/', (req, res) => {
-    res.send('put.applicant - edit applicant');
-});
-router.delete('/applicant', (req, res) => {
-    res.send('delete.applicant - delete an applicant');
-});
+router.put('/applicant/', controller.update);
+
+router.delete('/applicant', controller.delete);
 
 module.exports = router;
