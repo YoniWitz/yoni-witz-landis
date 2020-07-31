@@ -9,9 +9,6 @@
     "dev": "concurrently \"nodemon dev-server/index.js\" \"yarn serve\" "
   },
   "dependencies": {
-    "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.0.0",
-    "babel-preset-env": "^1.7.0",
     "bootstrap": "^4.5.0",
     "concurrently": "^5.2.0",
     "core-js": "^3.6.5",
@@ -25,7 +22,6 @@
     "webpack": "4.36.0"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.11.0",
     "@vue/cli-plugin-babel": "~4.4.0",
     "@vue/cli-plugin-eslint": "~4.4.0",
     "@vue/cli-plugin-router": "~4.4.0",
