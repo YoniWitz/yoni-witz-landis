@@ -3,15 +3,10 @@ const StringUtil = require('../../utilities/string-util');
 module.exports = function index(req, res) {
     const validation = validateIndex(req.body);
     if (!validation.isValid) {
-        return res.json({ message: validation.message });
+        return res.status(400).json({ message: validation.message });
     }
-
-    const user = {
-        username: req.body.username.toLowerCase(),
-        password: req.body.password
-    }
-    console.log(user);
-    return res.json();
+   
+    return res.status(204).json();
 }
 
 function validateIndex(body) {
