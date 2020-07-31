@@ -4,16 +4,19 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "set NODE_ENV=production && vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "dev": "concurrently \"nodemon dev-server/index.js\" \"yarn serve\" "
+    "dev": "concurrently \"set NODE_ENV=development\" \"nodemon dev-server/index.js\" \"yarn serve\" "
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
     "bootstrap": "^4.5.0",
     "concurrently": "^5.2.0",
     "core-js": "^3.6.5",
+    "cors": "^2.8.5",
     "install": "^0.13.0",
     "jquery": "^3.3.1",
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.4",
     "popper.js": "^1.16.1",
     "vue": "^2.6.11",
