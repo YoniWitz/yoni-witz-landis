@@ -3,7 +3,6 @@ const User = require('../../models/user-model');
 
 module.exports = {
     index: function (req, res) {
-        console.log(req.body);
         const validation = validateIndex(req.body);
         if (!validation.isValid) {
             return res.status(400).json({ message: validation.message });
@@ -17,12 +16,14 @@ module.exports = {
         });
 
         user.save(error => {
-            if (error.code === 11000) {//name taken
-                return res.status(403).json({ message: 'Username is already taken' });
+            if (error) {
+                if (error.code === 11000) {//name taken
+                    return res.status(403).json({ message: 'Username is already taken' });
+                }
+                return res.status(500).json();
             }
-            return res.status(500).json();
+            return res.status(201).json();
         });
-        return res.status(201).json();
     }
 }
 

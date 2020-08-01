@@ -5,9 +5,8 @@ const authRoutes = require('./api/auth/auth-routes');
 
 
 module.exports = function registerRoutes(app) {
-     app.use('/api', regRoutes);
+    app.use('/api', regRoutes);
     app.use('/api', applicantRoutes);
     app.use('/api', authRoutes);
     app.use('/api', userRoutes);
-   
 }
