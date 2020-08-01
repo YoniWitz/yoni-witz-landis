@@ -1,5 +1,6 @@
 const StringUtil = require('../../utilities/string-util');
 const User = require('../../models/user-model');
+const generateJWT = require('../../services/auth-service.js')
 
 module.exports = {
     index: function (req, res) {
@@ -20,18 +21,19 @@ module.exports = {
                 if (!passwordMatches) {
                     return res.status(401).json();
                 }
-                return res.status(204).json();
+                const token = generateJWT(user);
+                return res.status(200).json({token: token});
             })
     }
 }
 function validateIndex(body) {
     let errors = '';
     if (StringUtil.isEmpty(body.username)) {
-        errors += 'Username is required';
+        errors += 'Username is required ';
     }
 
     if (StringUtil.isEmpty(body.password)) {
-        errors += 'password is required';
+        errors += 'Password is required';
     }
 
     return {
