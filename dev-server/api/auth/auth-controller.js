@@ -15,8 +15,9 @@ module.exports = {
                 if (!user) {
                     return res.status(401).json();
                 }
-                const passwordMatch = true;
-                if (!passwordMatch) {
+                const passwordMatches = User.passwordMatches(req.body.password, user.password);
+
+                if (!passwordMatches) {
                     return res.status(401).json();
                 }
                 return res.status(204).json();
