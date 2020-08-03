@@ -17,12 +17,10 @@
         />
         <div class="card-body">
           <div class="d-flex justify-content-between">
-            <h5 class="card-title">{{ applicant.name_first }}</h5>
-            <span class="small">{{ applicant.created | date}}</span>
+            <h5 class="card-title">Full Name: {{ applicant.name_first }} {{ applicant.name_last }}</h5>
           </div>
-          <h6 class="card-subtitle mb-2 text-muted">and something here</h6>
-
-          <p class="card-text">{{applicant.comments}}</p>
+          <h6 class="card-subtitle mb-2 text-muted">Credit: {{applicant.credit}}</h6>
+          <h6 class="card-subtitle mb-2 text-muted">Balance: {{applicant.balance}}</h6>
           <div class="d-flex justify-content-between">
             <router-link
               type="button"
@@ -50,10 +48,9 @@
           </div>
         </b-modal>
       </div>
-
-      <div v-if="applicants && applicants.length < 1" class="ml-2">
-        <div class="alert alert-info">No Applicants Found</div>
-      </div>
+    </div>
+    <div v-if="applicants && applicants.length < 1" class="ml-2">
+      <div class="alert alert-info">No Applicants Found</div>
     </div>
   </div>
 </template>

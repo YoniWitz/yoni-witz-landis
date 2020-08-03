@@ -24,7 +24,6 @@ module.exports = {
     update: function (req, res) {
         const applicant = new Applicant(req.body.applicant);
 
-
         Applicant.findByIdAndUpdate({ _id: applicant._id }, applicant, error => {
             if (error) {
                 return res.status(500).json();
