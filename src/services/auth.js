@@ -9,20 +9,21 @@ export function isLoggedIn() {
 export function login(user) {
     return http().post('/auth', user)
         .then(res => {
-            if (res) {
-                const fakeToken = {
-                    token: 'my-token'
-                }
-                setToken(fakeToken)
+            if (res) {              
+                setToken(res.data.token)
             }
         });
 }
 
 function setToken(token) {
-    localStorage.setItem('token', JSON.stringify(token));
+    localStorage.setItem('token',token);
     store.dispatch('authenticate');
 }
 
+export function logout(){
+    localStorage.clear();
+    store.dispatch('authenticate');
+}
 export function getUsername() {
     return 'Yoni';
 }

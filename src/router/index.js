@@ -6,10 +6,9 @@ import Register from '../views/authentication/Register.vue'
 import ApplicantsAll from '../views/applicants/ApplicantsAll.vue'
 import ApplicantsEdit from '../views/applicants/ApplicantsEdit.vue'
 import ApplicantsCreate from '../views/applicants/ApplicantsCreate.vue'
+import * as auth from '../services/auth'
 
 Vue.use(VueRouter)
-
-const isLoggedIn = false;
 
 const routes = [
   {
@@ -22,7 +21,7 @@ const routes = [
     name: 'Applicants-All',
     component: ApplicantsAll,
     beforeEnter: (to, from, next) => {
-      if (isLoggedIn) {
+      if (auth.isLoggedIn()) {
         next();
       }
       else {
@@ -35,7 +34,7 @@ const routes = [
     name: 'Applicants-Create',
     component: ApplicantsCreate,
     beforeEnter: (to, from, next) => {
-      if (isLoggedIn) {
+      if (auth.isLoggedIn()) {
         next();
       }
       else {
@@ -48,7 +47,7 @@ const routes = [
     name: 'Applicants-Edit',
     component: ApplicantsEdit,
     beforeEnter: (to, from, next) => {
-      if (isLoggedIn) {
+      if (auth.isLoggedIn()) {
         next();
       }
       else {
@@ -61,7 +60,7 @@ const routes = [
     name: 'Register',
     component: Register,
     beforeEnter: (to, from, next) => {
-      if (!isLoggedIn) {
+      if (!auth.isLoggedIn()) {
         next();
       }
       else {
@@ -74,7 +73,7 @@ const routes = [
     name: 'Login',
     component: Login,
     beforeEnter: (to, from, next) => {
-      if (!isLoggedIn) {
+      if (!auth.isLoggedIn()) {
         next();
       }
       else {
