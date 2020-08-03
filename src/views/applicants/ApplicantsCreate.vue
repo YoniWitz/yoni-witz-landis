@@ -14,6 +14,96 @@
         />
       </div>
       <div class="form-group">
+        <label for="lastname">Last name</label>
+        <input
+          v-model="applicant.name_last"
+          type="text"
+          class="form-control"
+          id="lastname"
+          placeholder="Last Name"
+          name="lastname"
+        />
+      </div>
+      <div class="form-group">
+        <label for="balance">Balance</label>
+        <input
+          v-model="applicant.balance"
+          type="number"
+          class="form-control"
+          id="balance"
+          placeholder="Balance"
+          name="balance"
+          step="0.01"
+          value="0.00"
+        />
+      </div>
+      <div class="form-group">
+        <label for="credit">Credit</label>
+        <input
+          v-model="applicant.credit"
+          type="number"
+          class="form-control"
+          id="credit"
+          placeholder="Credit"
+          name="credit"
+        />
+      </div>
+      <div class="form-group">
+        <label for="picture">Picture</label>
+        <input
+          v-model="applicant.picture"
+          type="url"
+          class="form-control"
+          id="picture"
+          placeholder="Picture"
+          name="picture"
+        />
+      </div>
+      <div class="form-group">
+        <label for="employer">Employer</label>
+        <input
+          v-model="applicant.employer"
+          type="text"
+          class="form-control"
+          id="employer"
+          placeholder="Employer"
+          name="employer"
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          v-model="applicant.email"
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Email"
+          name="email"
+        />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input
+          v-model="applicant.phone"
+          type="number"
+          class="form-control"
+          id="phone"
+          placeholder="Phone"
+          name="phone"
+        />
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input
+          v-model="applicant.address"
+          type="text"
+          class="form-control"
+          id="address"
+          placeholder="Address"
+          name="address"
+        />
+      </div>
+      <div class="form-group">
         <label for="comments">Comments</label>
         <textarea
           v-model="applicant.comments"
@@ -38,8 +128,17 @@ export default {
   data: function () {
     return {
       applicant: {
+        balance: null,
+        credit: null,
+        picture: "",
         name_first: "",
+        name_last: "",
+        employer: "",
+        email: "",
+        phone: null,
+        address: "",
         comments: "",
+        tags: [],
       },
     };
   },
