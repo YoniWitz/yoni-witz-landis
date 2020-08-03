@@ -1,5 +1,6 @@
 
 const Applicant = require('../../models/applicant-model');
+const auth = require('../../services/auth-service')
 
 module.exports = {
     index: function (req, res) {
@@ -21,7 +22,8 @@ module.exports = {
 
     },
     update: function (req, res) {
-        const applicant = req.body.applicant;
+        const applicant = new Applicant(req.body.applicant);
+
 
         Applicant.findByIdAndUpdate({ _id: applicant._id }, applicant, error => {
             if (error) {

@@ -1,5 +1,6 @@
 import store from '../store/index';
 import { http } from './http-service';
+import jwt from 'jsonwebtoken';
 
 export function isLoggedIn() {
     const token = localStorage.getItem('token');
@@ -20,7 +21,7 @@ function setToken(token) {
     store.dispatch('authenticate');
 }
 
-export function getToken(){
+export function getToken() {
     return localStorage.getItem('token');
 }
 
@@ -29,13 +30,25 @@ export function logout() {
     store.dispatch('authenticate');
 }
 export function getUsername() {
-    return 'Yoni';
+    const token = decodeToken();
+    if (!token) { return null; }
+    return token.user.username;
 }
 
 export function getUserId() {
-    return 1;
+    const token = decodeToken();
+    if (!token) { return null; }
+    return token.user.id;
 }
 
 export function registerUser(user) {
     return http().post('/register', user);
+}
+
+function decodeToken() {
+    const token = getToken();
+    if (!token) {
+        return null;
+    }
+    return jwt.decode(token);
 }
