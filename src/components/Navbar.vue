@@ -22,23 +22,40 @@
           <li class="nav-item">
             <router-link to="/" class="nav-link" exact>Home</router-link>
           </li>
-          <li class="nav-item">
-            <router-link to="/applicants" class="nav-link" exact>Applicants</router-link>
+          <li v-if="$store.state.isLoggedIn" class="nav-item">
+            <router-link  to="/applicants" class="nav-link" exact>Applicants</router-link>
           </li>
-          <li class="nav-item">
+          <li v-if="!$store.state.isLoggedIn" class="nav-item">
             <router-link to="/register" class="nav-link" exact>Register</router-link>
           </li>
-          <li class="nav-item">
+          <li v-if="!$store.state.isLoggedIn" class="nav-item">
             <router-link to="/login" class="nav-link" exact>Login</router-link>
           </li>
-          <li class="nav-item">
-            <router-link to="/logout" class="nav-link" exact>Logout</router-link>
+          <li v-if="$store.state.isLoggedIn" class="nav-item">
+            <a v-on:click.prevent="logout()" class="nav-link" href="#">Logout</a>
           </li>
           <li class="nav-item">
-            <router-link to="/" class="nav-link" exact>{{this.$store.state.username ? this.$store.state.username: 'User'}}</router-link>
+            <router-link
+              to="/"
+              class="nav-link"
+              exact
+            >{{this.$store.state.username ? this.$store.state.username: 'User'}}</router-link>
           </li>
         </ul>
       </div>
     </nav>
   </header>
 </template>
+
+<script>
+import * as auth from "../services/auth";
+export default {
+  name: "Navbar",
+  methods: {
+    logout: function () {
+      auth.logout();
+      this.$router.push({ name: "Home" });
+    },
+  },
+};
+</script>
