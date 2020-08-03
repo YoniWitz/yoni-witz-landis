@@ -10,6 +10,7 @@
           class="form-control"
           id="firstname"
           placeholder="First Name"
+          name="firstname"
         />
       </div>
       <div class="form-group">
@@ -20,6 +21,7 @@
           class="form-control"
           id="lastname"
           placeholder="Last Name"
+          name="lastname"
         />
       </div>
       <div class="form-group">
@@ -30,6 +32,7 @@
           class="form-control"
           id="username"
           placeholder="Username"
+          name="username"
         />
       </div>
       <div class="form-group">
@@ -40,6 +43,7 @@
           class="form-control"
           id="password"
           placeholder="Password"
+          name="password"
         />
       </div>
       <div class="form-group">
@@ -72,9 +76,8 @@ export default {
       };
 
       const registerPromise = auth.registerUser(user);
-      const loginPromise = auth.login(user);
-      await Promise.all([registerPromise, loginPromise]);
-      this.$router.push({ name: "Home" });
+      await Promise.all([registerPromise]);
+      this.$router.push({ name: "Login" });
     },
   },
 };

@@ -6,7 +6,7 @@ import axios from 'axios';
 export function http() {
     return axios.create({
         baseURL: store.state.apiUrl,
-        hearers: {
+        headers: {
             Authorization: auth.getToken()
         }
     })

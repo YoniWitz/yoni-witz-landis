@@ -23,7 +23,7 @@
             <router-link to="/" class="nav-link" exact>Home</router-link>
           </li>
           <li v-if="$store.state.isLoggedIn" class="nav-item">
-            <router-link  to="/applicants" class="nav-link" exact>Applicants</router-link>
+            <router-link to="/applicants" class="nav-link" exact>Applicants</router-link>
           </li>
           <li v-if="!$store.state.isLoggedIn" class="nav-item">
             <router-link to="/register" class="nav-link" exact>Register</router-link>
@@ -34,7 +34,7 @@
           <li v-if="$store.state.isLoggedIn" class="nav-item">
             <a v-on:click.prevent="logout()" class="nav-link" href="#">Logout</a>
           </li>
-          <li class="nav-item">
+          <li v-if="$store.state.isLoggedIn" class="nav-item">
             <router-link
               to="/"
               class="nav-link"
@@ -54,7 +54,8 @@ export default {
   methods: {
     logout: function () {
       auth.logout();
-    },
-  },
+      this.$router.push({ name: "Home" }).catch(()=>{});
+    }
+  }
 };
 </script>

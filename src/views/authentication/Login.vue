@@ -4,11 +4,25 @@
     <form class="custom-form" v-on:submit.prevent="onSubmit">
       <div class="form-group">
         <label for="username">Username</label>
-        <input v-model="username" type="text" class="form-control" id="username" placeholder="Username" />
+        <input
+          v-model="username"
+          type="text"
+          class="form-control"
+          id="username"
+          placeholder="Username"
+          name="username"
+        />
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input v-model="password" type="password" class="form-control" id="password" placeholder="Password" />
+        <input
+          v-model="password"
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Password"
+          name="password"
+        />
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-secondary">Login</button>
@@ -22,18 +36,18 @@
 import * as auth from "../../services/auth";
 export default {
   name: "login",
-  data: function(){
-    return{
-      username:'',
-      password:''
-    }
+  data: function () {
+    return {
+      username: "",
+      password: "",
+    };
   },
   methods: {
     onSubmit: async function () {
-      const user={
+      const user = {
         username: this.username,
-        password: this.password
-      }
+        password: this.password,
+      };
       await auth.login(user);
       this.$router.push({ name: "Home" });
     },
