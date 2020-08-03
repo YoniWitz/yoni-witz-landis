@@ -8,7 +8,7 @@ module.exports = {
             if (error) {
                 return res.status(500).json();
             }
-            return res.status(201).json({ applicants });
+            return res.status(200).json({ applicants });
         });
     },
     create: function (req, res) {

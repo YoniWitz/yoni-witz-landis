@@ -11,6 +11,6 @@ router.get('/applicant/:id', auth.requireLogin, controller.get);
 
 router.put('/applicant/', auth.requireLogin, controller.update);
 
-router.delete('/applicant', auth.requireLogin, controller.delete);
+router.delete('/applicant/:id', auth.requireLogin, controller.delete);
 
 module.exports = router;

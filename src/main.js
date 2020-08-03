@@ -6,9 +6,14 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap'
 import './assets/css/style.css'
 import BootstrapVue from 'bootstrap-vue'
+import moment from 'moment'
 
 Vue.use(BootstrapVue);
 Vue.config.productionTip = process.env.NODE_ENV === 'production';
+Vue.filter('date', (value) => {
+  if (!value) return '';
+  return moment(value).format('MMM DD, YYY');
+})
 
 new Vue({
   router,
