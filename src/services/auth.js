@@ -9,18 +9,22 @@ export function isLoggedIn() {
 export function login(user) {
     return http().post('/auth', user)
         .then(res => {
-            if (res) {              
+            if (res) {
                 setToken(res.data.token)
             }
         });
 }
 
 function setToken(token) {
-    localStorage.setItem('token',token);
+    localStorage.setItem('token', token);
     store.dispatch('authenticate');
 }
 
-export function logout(){
+export function getToken(){
+    return localStorage.getItem('token');
+}
+
+export function logout() {
     localStorage.clear();
     store.dispatch('authenticate');
 }

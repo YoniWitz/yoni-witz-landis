@@ -1,6 +1,6 @@
 const StringUtil = require('../../utilities/string-util');
 const User = require('../../models/user-model');
-const generateJWT = require('../../services/auth-service.js')
+const authService = require('../../services/auth-service.js')
 
 module.exports = {
     index: function (req, res) {
@@ -21,7 +21,7 @@ module.exports = {
                 if (!passwordMatches) {
                     return res.status(401).json();
                 }
-                const token = generateJWT(user);
+                const token = authService.generateJWT(user);
                 return res.status(200).json({token: token});
             })
     }
