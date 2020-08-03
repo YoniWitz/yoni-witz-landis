@@ -38,5 +38,17 @@ module.exports = {
         } catch (error) {
             return null;
         }
+    },
+    getUserName: function (req) {
+        const token = decodeToken(req);
+        if (!token) { return null; }
+        return token.user.username;
+    },
+    getUserId: function (req) {
+        const token = decodeToken(req);
+        if (!token) { return null; }
+        return token.user.id;
     }
 }
+
+

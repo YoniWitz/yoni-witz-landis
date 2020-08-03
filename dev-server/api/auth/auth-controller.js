@@ -1,6 +1,6 @@
 const StringUtil = require('../../utilities/string-util');
 const User = require('../../models/user-model');
-const authService = require('../../services/auth-service.js')
+const authService = require('../../services/auth-service')
 
 module.exports = {
     index: function (req, res) {

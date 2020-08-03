@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('./register-controller.js');
+const controller = require('./register-controller');
 
 router.post('/register', controller.index);
 

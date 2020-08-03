@@ -1,4 +1,4 @@
-import store from '../store/index.js';
+import store from '../store/index';
 import * as auth from './auth'
 
 import axios from 'axios';
