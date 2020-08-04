@@ -3,7 +3,7 @@ const StringUtil = require('../utilities/string-util');
 const bcrypt = require('bcrypt-nodejs');
 
 const userSchema = new mongoose.Schema({
-    username: String,
+    username: {type: mongoose.Schema.Types.String, unique: true},
     first: String,
     last: String,
     password: String

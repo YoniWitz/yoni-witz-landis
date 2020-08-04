@@ -32,7 +32,7 @@
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-secondary">Login</button>
-      </div>      
+      </div>
     </form>
   </div>
 </template>
@@ -71,8 +71,14 @@ export default {
         username: this.username,
         password: this.password,
       };
-      await auth.login(user);
-      this.$router.push({ name: "Home" });
+      await auth.login(user).then((res) => {
+        this.errors = [];
+        if (res) {
+          this.errors.push(res);
+        } else {
+          this.$router.push({ name: "Home" });
+        }
+      });
     },
   },
 };

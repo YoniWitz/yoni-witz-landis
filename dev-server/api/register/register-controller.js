@@ -2,8 +2,8 @@ const StringUtil = require('../../utilities/string-util');
 const User = require('../../models/user-model');
 
 module.exports = {
-    index: function (req, res) {
-        const validation = validateIndex(req.body);
+    create: function (req, res) {
+        const validation = validateRegistration(req.body);
         if (!validation.isValid) {
             return res.status(400).json({ message: validation.message });
         }
@@ -17,17 +17,17 @@ module.exports = {
 
         user.save(error => {
             if (error) {
-                if (error.code === 11000) {//name taken
+                if (error.code === 11000) {//username taken
                     return res.status(403).json({ message: 'Username is already taken' });
                 }
-                return res.status(500).json();
+                return res.status(500).json({ message: error });
             }
             return res.status(201).json();
         });
     }
 }
 
-function validateIndex(body) {
+function validateRegistration(body) {
     let errors = '';
     if (StringUtil.isEmpty(body.username)) {
         errors += 'Username is required ';

@@ -46,7 +46,7 @@
           name="password"
         />
       </div>
-      
+
       <div v-if="errors.length" class="btn-danger ml-2">
         <b>Please correct the following error(s):</b>
         <ul>
@@ -104,9 +104,14 @@ export default {
         password: this.password,
       };
 
-      const registerPromise = auth.registerUser(user);
-      await Promise.all([registerPromise]);
-      this.$router.push({ name: "Login" });
+      await auth.registerUser(user).then((res) => {
+        this.errors = [];
+        if (res.status) {
+          this.$router.push({ name: "Login" });
+        } else {
+          this.errors.push(res);
+        }
+      });
     },
   },
 };

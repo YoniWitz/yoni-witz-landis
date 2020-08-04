@@ -11,9 +11,11 @@ export function login(user) {
     return http().post('/auth', user)
         .then(res => {
             if (res) {
-                setToken(res.data.token)
+                setToken(res.data.token);
             }
-        });
+        })
+        .catch(error =>
+            error.response.data.message);
 }
 
 function setToken(token) {
@@ -42,7 +44,10 @@ export function getUserId() {
 }
 
 export function registerUser(user) {
-    return http().post('/register', user);
+    return http().post('/register', user)
+    .then()
+    .catch(error =>
+        error.response.data.message);
 }
 
 function decodeToken() {
