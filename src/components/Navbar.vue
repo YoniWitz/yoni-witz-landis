@@ -1,10 +1,10 @@
 <template>
   <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top custom-bg-dark">
-      <router-link to="/" class="navbar-brand">
+      <a class="navbar-brand">
         <img style="max-height:25px;" src="../assets/logo.png" /> Yoni Witz
         Landis
-      </router-link>
+      </a>
 
       <button
         class="navbar-toggler"
@@ -35,11 +35,7 @@
             <a v-on:click.prevent="logout()" class="nav-link" href="#">Logout</a>
           </li>
           <li v-if="$store.state.isLoggedIn" class="nav-item">
-            <router-link
-              to="/"
-              class="nav-link"
-              exact
-            >{{this.$store.state.username ? this.$store.state.username: 'User'}}</router-link>
+            <a class="nav-link">{{this.$store.state.username ? this.$store.state.username: 'User'}}</a>
           </li>
         </ul>
       </div>
@@ -54,8 +50,8 @@ export default {
   methods: {
     logout: function () {
       auth.logout();
-      this.$router.push({ name: "Home" }).catch(()=>{});
-    }
-  }
+      this.$router.push({ name: "Home" }).catch(() => {});
+    },
+  },
 };
 </script>
