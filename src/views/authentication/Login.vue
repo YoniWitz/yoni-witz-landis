@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Login Route</h1>
-    <form class="custom-form" v-on:submit.prevent="onSubmit">
+    <form class="custom-form" v-on:submit.prevent="checkForm">
       <div class="form-group">
         <label for="username">Username</label>
         <input
@@ -24,13 +24,18 @@
           name="password"
         />
       </div>
+      <div v-if="errors.length" class="btn-danger ml-2">
+        <b>Please correct the following error(s):</b>
+        <ul>
+          <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
+        </ul>
+      </div>
       <div class="form-group">
         <button type="submit" class="btn btn-secondary">Login</button>
-      </div>
+      </div>      
     </form>
   </div>
 </template>
-
 
 <script>
 import * as auth from "../../services/auth";
@@ -38,12 +43,30 @@ export default {
   name: "login",
   data: function () {
     return {
+      errors: [],
       username: "",
       password: "",
     };
   },
   methods: {
-    onSubmit: async function () {
+    checkForm: function (e) {
+      this.errors = [];
+
+      if (!this.username) {
+        this.errors.push("Username required");
+      }
+      if (!this.password) {
+        this.errors.push("Password required.");
+      }
+
+      if (!this.errors.length) {
+        this.login();
+      }
+
+      e.preventDefault();
+    },
+
+    login: async function () {
       const user = {
         username: this.username,
         password: this.password,

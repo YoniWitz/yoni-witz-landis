@@ -3,7 +3,6 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan');
 const cors = require('cors');
 
-
 module.exports = function setEnvironment(app) {
     if (process.env.NODE_ENV !== 'production ') {
         setDevEnv(app);
@@ -20,11 +19,13 @@ function setDevEnv(app) {
     app.use(bodyParser.json());
     app.use(morgan('dev'));
     app.use(cors());
+    console.log("setting dev environment")
 }
 
 function setProdEnv(app) {
-    process.env.DB_URL = 'mogondb://localhost:27017/prod-db';
+    process.env.DB_URL = 'mongodb+srv://yoniwitz:JONath23!@@applicants.c5ksp.mongodb.net/applicants?retryWrites=true&w=majority';
     process.env.TOKEN_SECRET = 'my-prod-secret';
     app.use(bodyParser.json());
-    app.use(express.static(__dirname + '/../dist'));
+    app.use(express.static(__dirname + '../../dist'));
+    console.log("setting prod environment")
 }
