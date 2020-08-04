@@ -1,7 +1,9 @@
 <template>
   <div class="d-flex flex-column">
     <h1 class="mb-4">Applicants</h1>
-    <router-link to="/applicants/create" class="btn btn-success ml-2" exact>Create Applicant</router-link>
+    <div class="mb-4">
+      <router-link to="/applicants/create" class="btn btn-success ml-2" exact>Create Applicant</router-link>
+    </div>
     <div v-if="applicants && applicants.length > 0" class="d-flex flex-wrap justify-content-start">
       <div
         v-for="applicant in applicants"
@@ -49,7 +51,8 @@
         </b-modal>
       </div>
     </div>
-    <div v-if="applicants && applicants.length < 1" class="ml-2">
+
+    <div v-else class="ml-2">
       <div class="alert alert-info">No Applicants Found</div>
     </div>
   </div>

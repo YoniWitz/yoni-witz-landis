@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Edit Applicant</h1>
-    <form class="custom-form" v-on:submit.prevent="onSubmit">
+    <form class="custom-form" v-on:submit.prevent="checkForm">
       <div class="form-group">
         <label for="firstname">First name</label>
         <input
@@ -85,7 +85,7 @@
         <label for="phone">Phone</label>
         <input
           v-model="applicant.phone"
-          type="number"
+          type="tel"
           class="form-control"
           id="phone"
           placeholder="Phone"
@@ -113,6 +113,12 @@
           name="comments"
         />
       </div>
+      <div v-if="errors.length" class="btn-danger ml-2">
+        <b>Please correct the following error(s):</b>
+        <ul>
+          <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
+        </ul>
+      </div>
       <div class="form-group">
         <button type="submit" class="btn btn-secondary">Update</button>
       </div>
@@ -127,6 +133,7 @@ export default {
   name: "applicants-edit",
   data: function () {
     return {
+      errors: [],
       applicant: {
         balance: 0,
         credit: 0,
@@ -156,7 +163,47 @@ export default {
     });
   },
   methods: {
-    onSubmit: async function () {
+    checkForm: function (e) {
+      this.errors = [];
+
+      if (!this.applicant.balance) {
+        this.errors.push("Balance required");
+      }
+      if (!this.applicant.credit) {
+        this.errors.push("Credit required.");
+      }
+      if (!this.applicant.picture) {
+        this.errors.push("Picture required");
+      }
+      if (!this.applicant.name_first) {
+        this.errors.push("First name required.");
+      }
+      if (!this.applicant.name_last) {
+        this.errors.push("Last name required");
+      }
+      if (!this.applicant.email) {
+        this.errors.push("Email required");
+      } else if (!this.validEmail(this.applicant.email)) {
+        this.errors.push("Valid email required.");
+      }
+      if (!this.applicant.phone) {
+        this.errors.push("Phone required.");
+      }
+      if (!this.applicant.address) {
+        this.errors.push("Address required");
+      }
+
+      if (!this.errors.length) {
+        this.editApplicant();
+      }
+
+      e.preventDefault();
+    },
+    validEmail: function (email) {
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    },
+    editApplicant: async function () {
       const request = {
         applicant: this.applicant,
       };
