@@ -8,7 +8,7 @@ const applicantSchema = new mongoose.Schema({
     name_first: String,
     name_last: String,
     employer: String,
-    email: String,
+    email: {type: mongoose.Schema.Types.String, unique: true},
     phone: Number,
     address: String,
     comments: String,

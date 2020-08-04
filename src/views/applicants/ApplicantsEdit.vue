@@ -207,8 +207,14 @@ export default {
       const request = {
         applicant: this.applicant,
       };
-      await applicantService.updateApplicant(request);
-      this.$router.push({ name: "Applicants-All" });
+      await applicantService.updateApplicant(request).then((res) => {
+        this.errors = [];
+        if (res.status) {
+          this.$router.push({ name: "Applicants-All" });
+        } else {
+          this.errors.push(res);
+        }
+      });
     },
   },
 };

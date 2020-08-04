@@ -193,8 +193,14 @@ export default {
       const request = {
         applicant: this.applicant,
       };
-      await applicantService.createApplicant(request);
-      this.$router.push({ name: "Applicants-All" });
+      await applicantService.createApplicant(request).then((res) => {
+        this.errors = [];
+        if (res.status) {
+          this.$router.push({ name: "Applicants-All" });
+        } else {
+          this.errors.push(res);
+        }
+      });
     },
   },
 };

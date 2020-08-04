@@ -9,7 +9,9 @@ export function getApplicantById(id) {
 }
 
 export function createApplicant(applicant) {
-    return http().post('/applicant', applicant);
+    return http().post('/applicant', applicant)
+        .then()
+        .catch(error => error.response.data.message);
 }
 
 export function deleteApplicant(id) {
@@ -17,5 +19,6 @@ export function deleteApplicant(id) {
 }
 
 export function updateApplicant(applicant) {
-    return http().put('/applicant', applicant);
+    return http().put('/applicant', applicant).then()
+        .catch(error => error.response.data.message);
 }
