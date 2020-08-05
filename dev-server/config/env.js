@@ -23,9 +23,9 @@ function setDevEnv(app) {
 }
 
 function setProdEnv(app) {
-    process.env.DB_URL = 'mongodb+srv://yoniwitz:JONath23!@@applicants.c5ksp.mongodb.net/applicants?retryWrites=true&w=majority';
+    process.env.DB_URL = 'mongodb+srv://yoniwitz:1234@applicants.c5ksp.mongodb.net/applicants?retryWrites=true&w=majority';
     process.env.TOKEN_SECRET = 'my-prod-secret';
     app.use(bodyParser.json());
-    app.use(express.static(__dirname + '../../dist'));
+    app.use(express.static(__dirname + '/../../dist'));
     console.log("setting prod environment")
 }
