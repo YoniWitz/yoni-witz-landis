@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Register Route</h1>
+    <h1>Register Page</h1>
     <form class="custom-form" v-on:submit.prevent="checkForm">
       <div class="form-group">
         <label for="firstname">First Name</label>

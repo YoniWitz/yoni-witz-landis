@@ -66,6 +66,10 @@ div#custom-home {
   background-color: #32aced !important;
 }
 
+.btn-secondary {
+  background-color: rgb(43, 27, 189) !important;
+}
+
 .btn-success {
   background-color: #4fc08d !important;
 }
@@ -89,4 +93,8 @@ form.custom-form {
 
 .mortgage-obtained {
   color: #dc3545;
+}
+
+form label{
+  color: rgb(146, 206, 34) !important;
 }

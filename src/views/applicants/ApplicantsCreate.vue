@@ -113,6 +113,23 @@
           name="comments"
         />
       </div>
+
+      <div class="form-group">
+        <label for="tag">Enter tag and press Tab to add</label>
+        <input
+          type="text"
+          id="tags"
+          class="form-control"
+          v-on:keydown.tab.prevent="addTag"
+          v-model.trim="tag"
+          placeholder="Tag"
+        />
+      </div>
+      <div v-for="(tag, index) in applicant.tags" v-bind:key="index" class="form-group">
+        <label class="tags" for="tag">Tag {{ index | indexPlus }}</label>
+        <input type="text" id="tag" v-model="applicant.tags[index]" disabled />
+        <i class="btn btn-danger" v-on:click="deleteTag(tag)">delete</i>
+      </div>
       <div v-if="errors.length" class="btn-danger ml-2">
         <b>Please correct the following error(s):</b>
         <ul>
@@ -132,6 +149,7 @@ export default {
   name: "applicants-create",
   data: function () {
     return {
+      tag: "",
       errors: [],
       applicant: {
         balance: null,
@@ -148,7 +166,26 @@ export default {
       },
     };
   },
+  filters: {
+    indexPlus(index) {
+      return index + 1;
+    },
+  },
   methods: {
+    addTag() {
+      if (this.tag) {
+        this.applicant.tags.push(this.tag);
+        this.tag = "";
+        this.feedback = "";
+      } else {
+        this.feedback = "Must enter tag value";
+      }
+    },
+    deleteTag(tagToRemove) {
+      this.applicant.tags = this.applicant.tags.filter(
+        (tag) => tag !== tagToRemove
+      );
+    },
     checkForm: function (e) {
       this.errors = [];
 
