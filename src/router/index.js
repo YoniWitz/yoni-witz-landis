@@ -5,6 +5,7 @@ import Login from '../views/authentication/Login.vue'
 import Register from '../views/authentication/Register.vue'
 import ApplicantsAll from '../views/applicants/ApplicantsAll.vue'
 import ApplicantsEdit from '../views/applicants/ApplicantsEdit.vue'
+import ApplicantsView from '../views/applicants/ApplicantsView.vue'
 import ApplicantsCreate from '../views/applicants/ApplicantsCreate.vue'
 import * as auth from '../services/auth'
 
@@ -43,9 +44,22 @@ const routes = [
     }
   },
   {
-    path: '/applicants/:id',
+    path: '/applicants/edit/:id',
     name: 'Applicants-Edit',
     component: ApplicantsEdit,
+    beforeEnter: (to, from, next) => {
+      if (auth.isLoggedIn()) {
+        next();
+      }
+      else {
+        next('/login');
+      }
+    }
+  },
+  {
+    path: '/applicants/view/:id',
+    name: 'Applicants-View',
+    component: ApplicantsView,
     beforeEnter: (to, from, next) => {
       if (auth.isLoggedIn()) {
         next();
