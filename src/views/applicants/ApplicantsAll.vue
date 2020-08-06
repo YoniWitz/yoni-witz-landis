@@ -21,8 +21,17 @@
           <div class="d-flex justify-content-between">
             <h5 class="card-title">Full Name: {{ applicant.name_first }} {{ applicant.name_last }}</h5>
           </div>
-          <h6 class="card-subtitle mb-2 text-muted">Credit: {{applicant.credit}}</h6>
-          <h6 class="card-subtitle mb-2 text-muted">Balance: {{applicant.balance}}</h6>
+
+          <div class="card-subtitle mb-2 text-muted">
+            <b>Progress:</b>
+            <b-progress :max="max">
+              <b-progress-bar
+                :value="applicant.value"
+                :label="`${((applicant.value / max) * 100)}%`"
+                striped
+              ></b-progress-bar>
+            </b-progress>
+          </div>
           <div class="d-flex justify-content-between">
             <router-link
               type="button"
@@ -73,6 +82,7 @@ export default {
   name: "applicants-all",
   data: function () {
     return {
+      max: 100,
       applicants: null,
       currentApplicantId: null,
     };
@@ -80,10 +90,16 @@ export default {
   beforeRouteEnter(to, from, next) {
     applicantService.getAllApplicants().then((res) => {
       next((vm) => {
+        res.data.applicants.forEach(
+          (applicant) =>
+            (applicant.value =
+              applicant.credit / 100 + (applicant.balance / 100))
+        );
         vm.applicants = res.data.applicants;
       });
     });
   },
+
   methods: {
     obtainedMortgage: function () {},
     cancelModal: function () {
