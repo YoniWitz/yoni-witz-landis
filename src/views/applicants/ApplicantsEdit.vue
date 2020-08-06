@@ -1,6 +1,15 @@
 <template>
   <div>
-    <h1>Edit Applicant</h1>
+    <h1>
+      Edit Applicant
+      <router-link
+        type="button"
+        tag="button"
+        class="card-link btn btn-danger"
+        :to="{name:'Applicants-All'}"
+        exact
+      >Cancel</router-link>
+    </h1>
     <form class="custom-form" v-on:submit.prevent="checkForm">
       <div class="form-group">
         <label for="firstname">First name</label>
@@ -135,8 +144,15 @@
           <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
         </ul>
       </div>
-      <div class="form-group">
+      <div class="d-flex justify-content-between">
         <button type="submit" class="btn btn-secondary">Update</button>
+        <router-link
+          type="button"
+          tag="button"
+          class="card-link btn btn-danger"
+          :to="{name:'Applicants-All'}"
+          exact
+        >Cancel</router-link>
       </div>
     </form>
   </div>
@@ -144,26 +160,13 @@
 
 <script>
 import * as applicantService from "../../services/applicant-service";
-import moment from "moment";
 export default {
   name: "applicants-edit",
   data: function () {
     return {
-      tag:"",
+      tag: "",
       errors: [],
-      applicant: {
-        balance: 0,
-        credit: 0,
-        picture: "",
-        name_first: "",
-        name_last: "",
-        employer: "",
-        email: "",
-        phone: null,
-        address: "",
-        comments: "",
-        tags: [],
-      },
+      applicant: {},
     };
   },
   beforeRouteEnter(to, from, next) {
@@ -173,13 +176,12 @@ export default {
       } else {
         next((vm) => {
           const applicant = res.data.applicant;
-          applicant.created = moment(applicant.cretaed).format("YYYY-MM-DDD");
           vm.applicant = applicant;
         });
       }
     });
   },
-   filters: {
+  filters: {
     indexPlus(index) {
       return index + 1;
     },

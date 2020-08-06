@@ -31,6 +31,13 @@
               :to="{name:'Applicants-Edit', params:{id:applicant._id}}"
               exact
             >Edit</router-link>
+            <router-link
+              type="button"
+              tag="button"
+              class="card-link btn btn-success"
+              :to="{name:'Applicants-View', params:{id:applicant._id}}"
+              exact
+            >View</router-link>
             <a
               v-on:click.prevent="currentApplicantId = applicant._id"
               href="#"

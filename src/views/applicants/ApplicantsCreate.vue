@@ -1,6 +1,12 @@
 <template>
   <div>
-    <h1>Create Applicant</h1>
+    <h1>Create Applicant   <router-link
+          type="button"
+          tag="button"
+          class="card-link btn btn-danger"
+          :to="{name:'Applicants-All'}"
+          exact
+        >Cancel</router-link></h1>
     <form class="custom-form" v-on:submit.prevent="checkForm">
       <div class="form-group">
         <label for="firstname">First name</label>
@@ -136,8 +142,15 @@
           <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
         </ul>
       </div>
-      <div class="form-group">
+     <div class="d-flex justify-content-between">
         <button type="submit" class="btn btn-secondary">Create</button>
+        <router-link
+              type="button"
+              tag="button"
+              class="card-link btn btn-danger"
+              :to="{name:'Applicants-All'}"
+              exact
+            >Cancel</router-link>
       </div>
     </form>
   </div>
