@@ -4,22 +4,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 module.exports = function setEnvironment(app) {
-    if (process.env.NODE_ENV !== 'production ') {
-        setDevEnv(app);
-    }
-    else {
         setProdEnv(app);
-    }
-}
-
-function setDevEnv(app) {
-    process.env.NODE_ENV = 'development';
-    process.env.DB_URL = 'mongodb://localhost:27017/my-db';
-    process.env.TOKEN_SECRET = 'my-dev-secret';
-    app.use(bodyParser.json());
-    app.use(morgan('dev'));
-    app.use(cors());
-    console.log("setting dev environment")
 }
 
 function setProdEnv(app) {

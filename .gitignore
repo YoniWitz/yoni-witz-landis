@@ -5,7 +5,7 @@ node_modules
 # local env files
 .env.local
 .env.*.local
-package.zip
+/package.zip
 
 # Log files
 npm-debug.log*
