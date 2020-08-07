@@ -7,6 +7,8 @@ router.post('/applicant', auth.requireLogin, controller.create);
 
 router.get('/applicant', auth.requireLogin, controller.index);
 
+router.get('/applicant/analysis', auth.requireLogin, controller.analysis);
+
 router.get('/applicant/:id', auth.requireLogin, controller.get);
 
 router.put('/applicant/', auth.requireLogin, controller.update);

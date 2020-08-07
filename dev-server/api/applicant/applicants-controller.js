@@ -1,6 +1,7 @@
 
 const Applicant = require('../../models/applicant-model');
 const StringUtil = require('../../utilities/string-util');
+const moment = require('moment');
 
 module.exports = {
     index: function (req, res) {
@@ -9,6 +10,36 @@ module.exports = {
                 return res.status(500).json();
             }
             return res.status(200).json({ applicants });
+        });
+    },
+    analysis: function (req, res) {
+        Applicant.find({}, (error, applicants) => {
+            if (error) {
+                return res.status(500).json();
+            }
+            let analysis = {
+                "Jan": 0,
+                "Feb": 0,
+                "Mar": 0,
+                "Apr": 0,
+                "May": 0,
+                "Jun": 0,
+                "Jul": 0,
+                "Aug": 0,
+                "Sep": 0,
+                "Oct": 0,
+                "Nov": 0,
+                "Dec": 0
+            };
+            applicants.forEach(applicant => {
+                if ((applicant.credit / 10 + applicant.balance / 100 + (applicant.employer ? 10 : 0)) > 100)
+                    analysis[moment(applicant.createdAt).format(
+                        "MMM"
+                    )] = analysis[moment(applicant.createdAt).format(
+                        "MMM"
+                    )] + 1
+            })
+            return res.status(200).json(Object.values(analysis));
         });
     },
     create: function (req, res) {

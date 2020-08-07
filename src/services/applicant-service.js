@@ -4,6 +4,10 @@ export function getAllApplicants() {
     return http().get('/applicant');
 }
 
+export function getApplicantsAnalysis() {
+    return http().get('/applicant/analysis');
+}
+
 export function getApplicantById(id) {
     return http().get(`/applicant/${id}`);
 }
