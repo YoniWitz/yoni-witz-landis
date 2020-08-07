@@ -98,3 +98,12 @@ form.custom-form {
 form label{
   color: rgb(146, 206, 34) !important;
 }
+
+.chart{
+  text-align: center; 
+  color:green !important;
+}
+
+.applicant-view b{
+  color: green;
+}

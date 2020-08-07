@@ -76,7 +76,6 @@
 
 <script>
 import * as applicantService from "../../services/applicant-service";
-// import moment from "moment";
 
 export default {
   name: "applicants-all",
@@ -92,8 +91,9 @@ export default {
       next((vm) => {
         res.data.applicants.forEach(
           (applicant) =>
-            (applicant.value =
-              applicant.credit / 100 + (applicant.balance / 100))
+            {applicant.value =
+              Math.floor((applicant.credit / 10 + applicant.balance / 100 
+              + (applicant.employer ? 10 : 0))/100)*100}
         );
         vm.applicants = res.data.applicants;
       });
