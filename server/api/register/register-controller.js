@@ -4,7 +4,7 @@ const User = require('../../models/user-model');
 module.exports = {
     create: async function (req, res) {
         const validation = validateRegistration(req.body);
-        if (!validation.isValid) return res.status(400).json({ message: validation.message });
+        if (!validation.isValid) { return res.status(400).json({ message: validation.message }) };
 
         const user = new User({
             username: req.body.username,

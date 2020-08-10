@@ -11,8 +11,8 @@ import moment from 'moment'
 Vue.use(BootstrapVue);
 Vue.config.productionTip = process.env.NODE_ENV === 'production';
 Vue.filter('date', (value) => {
-  if (!value) return '';
-  
+  if (!value) { return '' };
+
   return moment(value).format('MMM DD, YYYY');
 })
 

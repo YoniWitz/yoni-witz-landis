@@ -202,10 +202,10 @@ export default {
         (tag) => tag !== tagToRemove
       );
     },
-    checkForm: function (e) {    
+    checkForm: function (e) {
       e.preventDefault();
       this.errors = [];
-      
+
       !this.applicant.balance ? this.errors.push("Balance required") : null;
       !this.applicant.credit ? this.errors.push("Credit required.") : null;
       !this.applicant.picture ? this.errors.push("Picture required") : null;

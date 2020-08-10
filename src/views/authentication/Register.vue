@@ -75,6 +75,7 @@ export default {
   },
   methods: {
     checkForm: function (e) {
+       e.preventDefault();
       this.errors = [];
 
       !this.last ? this.errors.push("Last Name required") : null;
@@ -82,9 +83,7 @@ export default {
       !this.username ? this.errors.push("Username required") : null;
       !this.password ? this.errors.push("Password required.") : null;
 
-      !this.errors.length ? this.register() : null;
-
-      e.preventDefault();
+      !this.errors.length ? this.register() : null;    
     },
     register: async function () {
       const user = {

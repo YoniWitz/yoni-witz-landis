@@ -37,18 +37,17 @@ module.exports = {
             "Dec": 0
         };
         applicants.forEach(applicant => {
-            if ((applicant.credit / 10 + applicant.balance / 100 + (applicant.employer ? 10 : 0)) > 100)
-                analysis[moment(applicant.createdAt).format(
-                    "MMM"
-                )] = analysis[moment(applicant.createdAt).format(
-                    "MMM"
-                )] + 1
+            if ((applicant.credit / 10 + applicant.balance / 100 + (applicant.employer ? 10 : 0)) > 100) {
+                analysis[moment(applicant.createdAt).format("MMM")]
+                    = analysis[moment(applicant.createdAt).format("MMM")] + 1;
+            }
         })
+
         return res.status(200).json(Object.values(analysis));
     },
     create: async function (req, res) {
         const validation = validateApplicant(req.body.applicant);
-        if (!validation.isValid) return res.status(400).json({ message: validation.message });
+        if (!validation.isValid) { return res.status(400).json({ message: validation.message }) };
 
         const applicant = new Applicant(req.body.applicant);
 
@@ -64,16 +63,16 @@ module.exports = {
     },
     update: async function (req, res) {
         const validation = validateApplicant(req.body.applicant);
-        if (!validation.isValid) return res.status(400).json({ message: validation.message });
+        if (!validation.isValid) { return res.status(400).json({ message: validation.message }) };
 
         const applicant = new Applicant(req.body.applicant);
 
         try {
             const currentApplication = await Applicant.findByIdAndUpdate({ _id: applicant._id }, applicant);
-            if (!currentApplication) return res.status(404).json({ message: 'Applicant not found' });
+            if (!currentApplication) { return res.status(404).json({ message: 'Applicant not found' }) };
         }
         catch (error) {
-             //11000 == email taken
+            //11000 == email taken
             return error.code === 11000 ? res.status(403).json({ message: 'Email is already in use' })
                 : res.status(500).json({ message: error });
         }
@@ -84,7 +83,7 @@ module.exports = {
         let applicant;
         try {
             applicant = await Applicant.findOne({ _id: req.params.id });
-            if (!applicant) return res.status(404).json();
+            if (!applicant) { return res.status(404).json() };
         }
         catch (error) {
             return res.status(500).json({ message: error });
@@ -103,7 +102,7 @@ module.exports = {
         let applicant;
         try {
             applicant = await Applicant.findOne({ _id: req.params.id });
-            if (!applicant) return res.status(404).json();
+            if (!applicant) { return res.status(404).json() };
         }
         catch (error) {
             return res.status(500).json({ message: error });

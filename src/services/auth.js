@@ -10,7 +10,7 @@ export function isLoggedIn() {
 export function login(user) {
     return http().post('/auth', user)
         .then(res => {
-            if (res) setToken(res.data.token);
+            if (res) { setToken(res.data.token) };
         })
         .catch(error =>
             error.response.data.message);
@@ -31,13 +31,13 @@ export function logout() {
 }
 export function getUsername() {
     const token = decodeToken();
-    if (!token) return null;
+    if (!token) { return null };
     return token.user.username;
 }
 
 export function getUserId() {
     const token = decodeToken();
-    if (!token) return null;
+    if (!token) { return null };
     return token.user.id;
 }
 
@@ -50,7 +50,7 @@ export function registerUser(user) {
 
 function decodeToken() {
     const token = getToken();
-    if (!token) return null;
+    if (!token) { return null };
 
     return jwt.decode(token);
 }
