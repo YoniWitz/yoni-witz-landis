@@ -10,7 +10,7 @@ connectToDB();
 registerRoutes(app);
 
 app.get('/', (req, res) => {
-    return process.env.NODE_ENV !== 'production ' ?
+    return !process.env.NODE_ENV || process.env.NODE_ENV.toString().trim() !== 'production' ?
         res.send('Running server in dev mode')
         : res.sendFile('index.html', { root: __dirname + '/../dist/' });
 });
