@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 decodeToken = function (req) {
     const token = req.headers.authoriztation || req.headers['authorization'];
-    if (!token) { return null };
+    if (!token) { return null; }
 
     try {
         return jwt.verify(token, process.env.TOKEN_SECRET);
@@ -18,7 +18,7 @@ module.exports = {
     },
     requireLogin: function (req, res, next) {
         const token = decodeToken(req);
-        if (!token) { return res.status(401).json({ message: 'You must be logged in' }) };
+        if (!token) { return res.status(401).json({ message: 'You must be logged in' }); }
 
         next();
     },
@@ -26,7 +26,7 @@ module.exports = {
     decodeToken: function (req) {
         const token = req.headers.authoriztation || req.headers['authorization'];
 
-        if (!token) { return null };
+        if (!token) { return null; }
 
         try {
             return jwt.verify(token, process.env.TOKEN_SECRET);
@@ -36,13 +36,13 @@ module.exports = {
     },
     getUserName: function (req) {
         const token = decodeToken(req);
-        if (!token) { return null };
+        if (!token) { return null; }
 
         return token.user.username;
     },
     getUserId: function (req) {
         const token = decodeToken(req);
-        if (!token) { return null };
+        if (!token) { return null; }
 
         return token.user.id;
     }

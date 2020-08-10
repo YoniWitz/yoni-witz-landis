@@ -47,7 +47,7 @@ module.exports = {
     },
     create: async function (req, res) {
         const validation = validateApplicant(req.body.applicant);
-        if (!validation.isValid) { return res.status(400).json({ message: validation.message }) };
+        if (!validation.isValid) { return res.status(400).json({ message: validation.message }); }
 
         const applicant = new Applicant(req.body.applicant);
 
@@ -63,13 +63,13 @@ module.exports = {
     },
     update: async function (req, res) {
         const validation = validateApplicant(req.body.applicant);
-        if (!validation.isValid) { return res.status(400).json({ message: validation.message }) };
+        if (!validation.isValid) { return res.status(400).json({ message: validation.message }); }
 
         const applicant = new Applicant(req.body.applicant);
 
         try {
             const currentApplication = await Applicant.findByIdAndUpdate({ _id: applicant._id }, applicant);
-            if (!currentApplication) { return res.status(404).json({ message: 'Applicant not found' }) };
+            if (!currentApplication) { return res.status(404).json({ message: 'Applicant not found' }); }
         }
         catch (error) {
             //11000 == email taken
@@ -83,7 +83,7 @@ module.exports = {
         let applicant;
         try {
             applicant = await Applicant.findOne({ _id: req.params.id });
-            if (!applicant) { return res.status(404).json() };
+            if (!applicant) { return res.status(404).json(); }
         }
         catch (error) {
             return res.status(500).json({ message: error });
@@ -102,7 +102,7 @@ module.exports = {
         let applicant;
         try {
             applicant = await Applicant.findOne({ _id: req.params.id });
-            if (!applicant) { return res.status(404).json() };
+            if (!applicant) { return res.status(404).json(); }
         }
         catch (error) {
             return res.status(500).json({ message: error });
