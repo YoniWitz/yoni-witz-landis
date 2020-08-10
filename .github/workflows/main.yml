@@ -33,4 +33,4 @@ jobs:
       run: npm run build
     
     - name: Run a multi-line script
-      run: npm start-aws
+      run: npm run start-aws
