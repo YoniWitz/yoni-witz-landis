@@ -2,7 +2,7 @@
 
 The app displays a list of home owning applicants from a remote NoSQL database (mongodb). The app requires user registration and login. Once logged in, the user can create/view/update/delete applicants. User can also view details and charts of each applicant.
 
-
+## You can use it [here](http://ec2-54-165-28-63.compute-1.amazonaws.com:3000/)
 
 <image src="./src/assets/yoni-witz-landis.png">
 
