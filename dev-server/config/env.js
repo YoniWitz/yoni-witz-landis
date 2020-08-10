@@ -14,7 +14,7 @@ module.exports = function setEnvironment(app) {
 
 function setDevEnv(app) {
     process.env.NODE_ENV = 'development';
-    process.env.DB_URL = 'mongodb://localhost:27017/my-db';
+    process.env.DB_URL = 'mongodb+srv://yoniwitz:1234@applicants.c5ksp.mongodb.net/applicants?retryWrites=true&w=majority';
     process.env.TOKEN_SECRET = 'my-dev-secret';
     app.use(bodyParser.json());
     app.use(morgan('dev'));
