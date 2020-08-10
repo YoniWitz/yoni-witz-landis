@@ -59,9 +59,8 @@
         :show-x-axis="true"
         :width="400"
         :height="200"
-        :use-month-labels="true"
-        :months="months"
         :show-values="true"
+        :use-month-labels="true"
       />
     </div>
   </div>
@@ -77,6 +76,11 @@ export default {
     PureVueChart,
   },
   name: "applicants-view",
+  computed: {
+    mypoints: function () {
+      return this.points;
+    },
+  },
   data: function () {
     return {
       points: [],
@@ -85,20 +89,21 @@ export default {
       applicant: {},
     };
   },
-  beforeRouteEnter(to, from, next) {
-    applicantService.getApplicantById(to.params.id).then((res) => {
+  async beforeRouteEnter(to, from, next) {
+    console.log(from, next);
+    const applicantPromise = applicantService.getApplicantById(to.params.id);
+    const analysisPromise = applicantService.getApplicantsAnalysis();
+    await Promise.all([applicantPromise, analysisPromise]).then((res) => {
       if (!res) {
         next("/applicants");
       } else {
         next((vm) => {
-          const applicant = res.data.applicant;
+          const applicant = res[0].data.applicant;
           applicant.createdAt = moment(applicant.createdAt).format(
             "YYYY-MM-DDD"
           );
           vm.applicant = applicant;
-          applicantService.getApplicantsAnalysis().then((res) => {
-            !res?next("/applicants"): vm.points = res.data;
-          });
+          vm.points = res[1].data;
         });
       }
     });
