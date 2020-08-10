@@ -204,36 +204,22 @@ export default {
     checkForm: function (e) {
       this.errors = [];
 
-      if (!this.applicant.balance) {
-        this.errors.push("Balance required");
-      }
-      if (!this.applicant.credit) {
-        this.errors.push("Credit required.");
-      }
-      if (!this.applicant.picture) {
-        this.errors.push("Picture required");
-      }
-      if (!this.applicant.name_first) {
-        this.errors.push("First name required.");
-      }
-      if (!this.applicant.name_last) {
-        this.errors.push("Last name required");
-      }
+      !this.applicant.balance ? this.errors.push("Balance required") : null;
+      !this.applicant.credit ? this.errors.push("Credit required.") : null;
+      !this.applicant.picture ? this.errors.push("Picture required") : null;
+      !this.applicant.name_first
+        ? this.errors.push("First name required.")
+        : null;
+      !this.applicant.name_last ? this.errors.push("Last name required") : null;
       if (!this.applicant.email) {
         this.errors.push("Email required");
       } else if (!this.validEmail(this.applicant.email)) {
         this.errors.push("Valid email required.");
       }
-      if (!this.applicant.phone) {
-        this.errors.push("Phone required.");
-      }
-      if (!this.applicant.address) {
-        this.errors.push("Address required");
-      }
+      !this.applicant.phone ? this.errors.push("Phone required.") : null;
+      !this.applicant.address ? this.errors.push("Address required") : null;
 
-      if (!this.errors.length) {
-        this.editApplicant();
-      }
+      !this.errors.length ? this.editApplicant() : null;
 
       e.preventDefault();
     },
@@ -247,11 +233,9 @@ export default {
       };
       await applicantService.updateApplicant(request).then((res) => {
         this.errors = [];
-        if (res.status) {
-          this.$router.push({ name: "Applicants-All" });
-        } else {
-          this.errors.push(res);
-        }
+        res.status
+          ? this.$router.push({ name: "Applicants-All" })
+          : this.errors.push(res);
       });
     },
   },

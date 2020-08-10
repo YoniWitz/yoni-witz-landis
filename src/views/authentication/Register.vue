@@ -77,22 +77,12 @@ export default {
     checkForm: function (e) {
       this.errors = [];
 
-      if (!this.last) {
-        this.errors.push("Last Name required");
-      }
-      if (!this.first) {
-        this.errors.push("First Name required.");
-      }
-      if (!this.username) {
-        this.errors.push("Username required");
-      }
-      if (!this.password) {
-        this.errors.push("Password required.");
-      }
+      !this.last ? this.errors.push("Last Name required") : null;
+      !this.first ? this.errors.push("First Name required.") : null;
+      !this.username ? this.errors.push("Username required") : null;
+      !this.password ? this.errors.push("Password required.") : null;
 
-      if (!this.errors.length) {
-        this.register();
-      }
+      !this.errors.length ? this.register() : null;
 
       e.preventDefault();
     },
@@ -106,11 +96,9 @@ export default {
 
       await auth.registerUser(user).then((res) => {
         this.errors = [];
-        if (res.status) {
-          this.$router.push({ name: "Login" });
-        } else {
-          this.errors.push(res);
-        }
+        res.status
+          ? this.$router.push({ name: "Login" })
+          : this.errors.push(res);
       });
     },
   },

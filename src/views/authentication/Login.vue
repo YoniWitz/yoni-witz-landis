@@ -52,17 +52,10 @@ export default {
     checkForm: function (e) {
       this.errors = [];
 
-      if (!this.username) {
-        this.errors.push("Username required");
-      }
-      if (!this.password) {
-        this.errors.push("Password required.");
-      }
-
-      if (!this.errors.length) {
-        this.login();
-      }
-
+      !this.username ? this.errors.push("Username required") : null;
+      !this.password ? this.errors.push("Password required.") : null;
+      
+      !this.errors.length ? this.login() : null;
       e.preventDefault();
     },
 
@@ -73,11 +66,7 @@ export default {
       };
       await auth.login(user).then((res) => {
         this.errors = [];
-        if (res) {
-          this.errors.push(res);
-        } else {
-          this.$router.push({ name: "Home" });
-        }
+        res ? this.errors.push(res) : this.$router.push({ name: "Home" });
       });
     },
   },

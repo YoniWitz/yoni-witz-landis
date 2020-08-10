@@ -17,7 +17,6 @@ export default new Vuex.Store({
       if (state.isLoggedIn) {
         state.username = auth.getUsername();
         state.userId = auth.getUsername();
-
       }
       else {
         state.userId = null;
