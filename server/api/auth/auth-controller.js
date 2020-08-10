@@ -6,14 +6,14 @@ module.exports = {
     login: async function (req, res) {
         const validation = validateLogin(req.body);
         if (!validation.isValid) return res.status(400).json({ message: validation.message });
-
+        let user;
         try {
-            const user = await User.findOne({ username: req.body.username.toLowerCase() });
+            user = await User.findOne({ username: req.body.username.toLowerCase() });
             if (!user) return res.status(401).json({ message: "Username and Password not found" });
         } catch (error) {
             return res.status(500).json({ message: error });
         }
-        
+
         const passwordMatches = User.passwordMatches(req.body.password, user.password);
 
         if (!passwordMatches) return res.status(401).json({ message: "Username and Password not found" });

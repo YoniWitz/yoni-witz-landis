@@ -73,6 +73,7 @@ module.exports = {
             if (!currentApplication) return res.status(404).json({ message: 'Applicant not found' });
         }
         catch (error) {
+             //11000 == email taken
             return error.code === 11000 ? res.status(403).json({ message: 'Email is already in use' })
                 : res.status(500).json({ message: error });
         }
@@ -80,8 +81,9 @@ module.exports = {
         return res.status(204).json();
     },
     delete: async function (req, res) {
+        let applicant;
         try {
-            const applicant = await Applicant.findOne({ _id: req.params.id });
+            applicant = await Applicant.findOne({ _id: req.params.id });
             if (!applicant) return res.status(404).json();
         }
         catch (error) {
@@ -98,8 +100,9 @@ module.exports = {
         return res.status(204).json();
     },
     get: async function (req, res) {
+        let applicant;
         try {
-            const applicant = await Applicant.findOne({ _id: req.params.id });
+            applicant = await Applicant.findOne({ _id: req.params.id });
             if (!applicant) return res.status(404).json();
         }
         catch (error) {
@@ -113,14 +116,14 @@ module.exports = {
 function validateApplicant(applicant) {
     let errors = '';
 
-    errors += StringUtil.isEmpty(applicant.balance) ? 'Balance is required ' : null;
-    errors += StringUtil.isEmpty(applicant.credit) ? 'Credit is required ' : null;
-    errors += StringUtil.isEmpty(applicant.picture) ? 'Picture name is required ' : null;
-    errors += StringUtil.isEmpty(applicant.name_first) ? 'First name is required ' : null;
-    errors += StringUtil.isEmpty(applicant.name_last) ? 'Last name is required ' : null;
-    errors += StringUtil.isEmpty(applicant.email) ? 'Email is required ' : null;
-    errors += StringUtil.isEmpty(applicant.phone) ? 'Phone name is required ' : null;
-    errors += StringUtil.isEmpty(applicant.address) ? 'Address name is required ' : null;
+    errors += StringUtil.isEmpty(applicant.balance) ? 'Balance is required ' : '';
+    errors += StringUtil.isEmpty(applicant.credit) ? 'Credit is required ' : '';
+    errors += StringUtil.isEmpty(applicant.picture) ? 'Picture name is required ' : '';
+    errors += StringUtil.isEmpty(applicant.name_first) ? 'First name is required ' : '';
+    errors += StringUtil.isEmpty(applicant.name_last) ? 'Last name is required ' : '';
+    errors += StringUtil.isEmpty(applicant.email) ? 'Email is required ' : '';
+    errors += StringUtil.isEmpty(applicant.phone) ? 'Phone name is required ' : '';
+    errors += StringUtil.isEmpty(applicant.address) ? 'Address name is required ' : '';
 
     return {
         isValid: StringUtil.isEmpty(errors),

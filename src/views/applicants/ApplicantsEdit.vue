@@ -202,6 +202,7 @@ export default {
       );
     },
     checkForm: function (e) {
+      e.preventDefault();
       this.errors = [];
 
       !this.applicant.balance ? this.errors.push("Balance required") : null;
@@ -220,8 +221,6 @@ export default {
       !this.applicant.address ? this.errors.push("Address required") : null;
 
       !this.errors.length ? this.editApplicant() : null;
-
-      e.preventDefault();
     },
     validEmail: function (email) {
       var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

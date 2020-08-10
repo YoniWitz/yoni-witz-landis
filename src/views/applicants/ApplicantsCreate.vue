@@ -202,8 +202,10 @@ export default {
         (tag) => tag !== tagToRemove
       );
     },
-    checkForm: function (e) {
+    checkForm: function (e) {    
+      e.preventDefault();
       this.errors = [];
+      
       !this.applicant.balance ? this.errors.push("Balance required") : null;
       !this.applicant.credit ? this.errors.push("Credit required.") : null;
       !this.applicant.picture ? this.errors.push("Picture required") : null;
@@ -219,9 +221,8 @@ export default {
       }
       !this.applicant.phone ? this.errors.push("Phone required.") : null;
       !this.applicant.address ? this.errors.push("Address required") : null;
-      !this.errors.length ? this.createApplicant() : null;
 
-      e.preventDefault();
+      !this.errors.length ? this.createApplicant() : null;
     },
     validEmail: function (email) {
       var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

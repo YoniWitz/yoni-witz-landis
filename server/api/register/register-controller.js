@@ -17,6 +17,7 @@ module.exports = {
             await user.save();
         }
         catch (error) {
+            //11000 == password taken
             return error.code === 11000 ? res.status(403).json({ message: 'Username is already taken' })
                 : res.status(500).json({ message: error });
         }
@@ -26,10 +27,10 @@ module.exports = {
 
 function validateRegistration(body) {
     let errors = '';
-    errors += StringUtil.isEmpty(body.username) ? 'Username is required ' : null;
-    errors += StringUtil.isEmpty(body.password) ? 'password is required ' : null;
-    errors += StringUtil.isEmpty(body.first) ? 'First name is required ' : null;
-    errors += StringUtil.isEmpty(body.last) ? 'Last name is required ' : null;
+    errors += StringUtil.isEmpty(body.username) ? 'Username is required ' : '';
+    errors += StringUtil.isEmpty(body.password) ? 'password is required ' : '';
+    errors += StringUtil.isEmpty(body.first) ? 'First name is required ' : '';
+    errors += StringUtil.isEmpty(body.last) ? 'Last name is required ' : '';
 
     return {
         isValid: StringUtil.isEmpty(errors),
