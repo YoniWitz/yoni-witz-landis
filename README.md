@@ -10,8 +10,7 @@ The app displays a list of home owning applicants from a remote NoSQL database (
 
 1. Download Repository
 2. In root directory: 'yarn install'
-3. for development environment: In root directory: 'yarn dev'
-4. for production environment: In root directory: 'yarn build' and 'yarn serve'
+3. In root directory: 'yarn build' and 'yarn serve'
 
 ## Summary
 This web app is an assignment I received as part of a hiring process at Landis. The project was created using the MEVN stack and covers a lot of different aspects of a Full Stack developer's responsibilites, including:
@@ -25,7 +24,6 @@ Running a server on Node
 Web services and http requsts using Express  
 
 ### Front End
-User Authentication  
 Registration and Login pages  
 CRUD operations
 
