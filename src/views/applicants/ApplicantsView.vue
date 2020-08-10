@@ -97,11 +97,7 @@ export default {
           );
           vm.applicant = applicant;
           applicantService.getApplicantsAnalysis().then((res) => {
-            if (!res) {
-              next("/applicants");
-            } else {
-              vm.points = res.data;
-            }
+            !res?next("/applicants"): vm.points = res.data;
           });
         });
       }

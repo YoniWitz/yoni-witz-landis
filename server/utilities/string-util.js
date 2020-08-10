@@ -1,10 +1,6 @@
 module.exports = class StringUtil {
     static isEmpty(value) {
-        if (typeof value === "string")
-            return !value || !value.trim();
-        else {
-            return !value;
-        }
+        return typeof value === "string" ? !value || !value.trim() : !value;
     }
 
     static capitalize(word) {

@@ -22,12 +22,7 @@ const routes = [
     name: 'Applicants-All',
     component: ApplicantsAll,
     beforeEnter: (to, from, next) => {
-      if (auth.isLoggedIn()) {
-        next();
-      }
-      else {
-        next('/login');
-      }
+      auth.isLoggedIn() ? next() : next('/login');
     }
   },
   {
@@ -35,12 +30,7 @@ const routes = [
     name: 'Applicants-Create',
     component: ApplicantsCreate,
     beforeEnter: (to, from, next) => {
-      if (auth.isLoggedIn()) {
-        next();
-      }
-      else {
-        next('/login');
-      }
+      auth.isLoggedIn() ? next()  : next('/login');
     }
   },
   {
@@ -48,12 +38,7 @@ const routes = [
     name: 'Applicants-Edit',
     component: ApplicantsEdit,
     beforeEnter: (to, from, next) => {
-      if (auth.isLoggedIn()) {
-        next();
-      }
-      else {
-        next('/login');
-      }
+      auth.isLoggedIn() ? next()  : next('/login');
     }
   },
   {
@@ -61,12 +46,7 @@ const routes = [
     name: 'Applicants-View',
     component: ApplicantsView,
     beforeEnter: (to, from, next) => {
-      if (auth.isLoggedIn()) {
-        next();
-      }
-      else {
-        next('/login');
-      }
+      auth.isLoggedIn() ? next()  : next('/login');
     }
   },
   {
@@ -74,12 +54,7 @@ const routes = [
     name: 'Register',
     component: Register,
     beforeEnter: (to, from, next) => {
-      if (!auth.isLoggedIn()) {
-        next();
-      }
-      else {
-        next('/');
-      }
+      !auth.isLoggedIn() ? next()  : next('/');
     }
   },
   {
@@ -87,12 +62,7 @@ const routes = [
     name: 'Login',
     component: Login,
     beforeEnter: (to, from, next) => {
-      if (!auth.isLoggedIn()) {
-        next();
-      }
-      else {
-        next('/');
-      }
+      !auth.isLoggedIn() ? next()  : next('/');
     }
   },
   {

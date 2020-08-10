@@ -1,12 +1,15 @@
 <template>
   <div>
-    <h1>Create Applicant   <router-link
-          type="button"
-          tag="button"
-          class="card-link btn btn-danger"
-          :to="{name:'Applicants-All'}"
-          exact
-        >Cancel</router-link></h1>
+    <h1>
+      Create Applicant
+      <router-link
+        type="button"
+        tag="button"
+        class="card-link btn btn-danger"
+        :to="{name:'Applicants-All'}"
+        exact
+      >Cancel</router-link>
+    </h1>
     <form class="custom-form" v-on:submit.prevent="checkForm">
       <div class="form-group">
         <label for="firstname">First name</label>
@@ -142,15 +145,15 @@
           <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
         </ul>
       </div>
-     <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-between">
         <button type="submit" class="btn btn-secondary">Create</button>
         <router-link
-              type="button"
-              tag="button"
-              class="card-link btn btn-danger"
-              :to="{name:'Applicants-All'}"
-              exact
-            >Cancel</router-link>
+          type="button"
+          tag="button"
+          class="card-link btn btn-danger"
+          :to="{name:'Applicants-All'}"
+          exact
+        >Cancel</router-link>
       </div>
     </form>
   </div>
@@ -200,40 +203,26 @@ export default {
       );
     },
     checkForm: function (e) {
+      e.preventDefault();
       this.errors = [];
 
-      if (!this.applicant.balance) {
-        this.errors.push("Balance required");
-      }
-      if (!this.applicant.credit) {
-        this.errors.push("Credit required.");
-      }
-      if (!this.applicant.picture) {
-        this.errors.push("Picture required");
-      }
-      if (!this.applicant.name_first) {
-        this.errors.push("First name required.");
-      }
-      if (!this.applicant.name_last) {
-        this.errors.push("Last name required");
-      }
+      !this.applicant.balance ? this.errors.push("Balance required") : null;
+      !this.applicant.credit ? this.errors.push("Credit required.") : null;
+      !this.applicant.picture ? this.errors.push("Picture required") : null;
+      !this.applicant.name_first
+        ? this.errors.push("First name required.")
+        : null;
+      !this.applicant.name_last ? this.errors.push("Last name required") : null;
+
       if (!this.applicant.email) {
         this.errors.push("Email required");
       } else if (!this.validEmail(this.applicant.email)) {
         this.errors.push("Valid email required.");
       }
-      if (!this.applicant.phone) {
-        this.errors.push("Phone required.");
-      }
-      if (!this.applicant.address) {
-        this.errors.push("Address required");
-      }
+      !this.applicant.phone ? this.errors.push("Phone required.") : null;
+      !this.applicant.address ? this.errors.push("Address required") : null;
 
-      if (!this.errors.length) {
-        this.createApplicant();
-      }
-
-      e.preventDefault();
+      !this.errors.length ? this.createApplicant() : null;
     },
     validEmail: function (email) {
       var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -245,11 +234,9 @@ export default {
       };
       await applicantService.createApplicant(request).then((res) => {
         this.errors = [];
-        if (res.status) {
-          this.$router.push({ name: "Applicants-All" });
-        } else {
-          this.errors.push(res);
-        }
+        res.status
+          ? this.$router.push({ name: "Applicants-All" })
+          : this.errors.push(res);
       });
     },
   },

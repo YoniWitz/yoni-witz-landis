@@ -4,12 +4,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 module.exports = function setEnvironment(app) {
-    if (process.env.NODE_ENV !== 'production ') {
-        setDevEnv(app);
-    }
-    else {
-        setProdEnv(app);
-    }
+    process.env.NODE_ENV !== 'production ' ? setDevEnv(app) : setProdEnv(app);
 }
 
 function setDevEnv(app) {
