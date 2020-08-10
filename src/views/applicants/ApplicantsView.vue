@@ -55,6 +55,7 @@
     <div class="chart">
       <b>Number of Successful Applicants by month they initially Applied:</b>
       <pure-vue-chart
+        v-if="display"
         :points="points"
         :show-x-axis="true"
         :width="400"
@@ -62,6 +63,7 @@
         :show-values="true"
         :use-month-labels="true"
       />
+      <div v-else>No successful applicants</div>
     </div>
   </div>
 </template>
@@ -77,8 +79,8 @@ export default {
   },
   name: "applicants-view",
   computed: {
-    mypoints: function () {
-      return this.points;
+    display: function () {
+     return !this.points.every(item => item === 0);
     },
   },
   data: function () {

@@ -91,9 +91,11 @@ export default {
       next((vm) => {
         res.data.applicants.forEach(
           (applicant) =>
-            {applicant.value =
-              Math.floor((applicant.credit / 10 + applicant.balance / 100 
-              + (applicant.employer ? 10 : 0))/100)*100}
+            {
+              let value = Math.floor(applicant.credit / 10 + applicant.balance / 100 
+              + (applicant.employer ? 10 : 0));
+              applicant.value = value > 100 ? 100 : value;
+              }
         );
         vm.applicants = res.data.applicants;
       });
