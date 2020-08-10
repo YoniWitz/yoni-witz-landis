@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 module.exports = function setEnvironment(app) {
-    process.env.NODE_ENV !== 'production ' ? setDevEnv(app) : setProdEnv(app);
+    !process.env.NODE_ENV || process.env.NODE_ENV.toString().trim() !== 'production'? setDevEnv(app) : setProdEnv(app);
 }
 
 function setDevEnv(app) {
@@ -18,6 +18,7 @@ function setDevEnv(app) {
 }
 
 function setProdEnv(app) {
+    process.env.NODE_ENV = 'production';
     process.env.DB_URL = 'mongodb+srv://yoniwitz:1234@applicants.c5ksp.mongodb.net/applicants?retryWrites=true&w=majority';
     process.env.TOKEN_SECRET = 'my-prod-secret';
     app.use(bodyParser.json());
